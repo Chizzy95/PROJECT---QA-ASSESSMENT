@@ -1,0 +1,239 @@
+{
+	"info": {
+		"_postman_id": "c14dde2b-2405-468f-b5ef-fb51782378a9",
+		"name": "POSTMAN API TEST",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28012623",
+		"_collection_link": "https://lively-rocket-5635.postman.co/workspace/API-Automation-Testing~268c9cf3-bcc5-4007-9605-9bda77be95af/collection/28012623-c14dde2b-2405-468f-b5ef-fb51782378a9?action=share&source=collection_link&creator=28012623"
+	},
+	"item": [
+		{
+			"name": "CRUD OPERATIONS",
+			"item": [
+				{
+					"name": "SIGNUP",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body matches Email\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"naomibrown5778@gmail.com\");\r",
+									"    pm.test(\"Body matches First Name\", function () {\r",
+									"        pm.expect(pm.response.text()).to.include(\"Chibuzor\");\r",
+									"    });\r",
+									"\r",
+									"    pm.test(\"Body matches Last Name\", function () {\r",
+									"        pm.expect(pm.response.text()).to.include(\"Edison\");\r",
+									"    });\r",
+									"\r",
+									"    pm.test(\"Body matches Password\", function () {\r",
+									"        pm.expect(pm.response.text()).to.include(\"Naomi&78\");\r",
+									"    });\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"First Name\": \"Chibuzor\",\r\n    \"Last Name\": \"Edison\",\r\n    \"Email\": \"naomibrown5778@gmail.com\",\r\n    \"Password\": \"Naomi&78\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/signUp",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"signUp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LOGIN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Body matches Email\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"naomibrown5778@gmail.com\");\r",
+									"    pm.test(\"Body matches Password\", function () {\r",
+									"        pm.expect(pm.response.text()).to.include(\"Naomi&78\");\r",
+									"    });\r",
+									"    \r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Email\": \"naomibrown5778@gmail.com\"\r\n    \"Password\": \"Naomi&78\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/user/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LIST OF PROVIDERS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"\r",
+									"    pm.test(\"Body matches providerCode \", function () {\r",
+									"        pm.expect(pm.response.text()).to.include(\"PP03\");\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/provider/getProviders",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"provider",
+								"getProviders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE A PROVIDER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"providerCode\": \"PP03\",\r\n            \"name\": \"Heirs Assurance\",\r\n            \"logo\": \"https://partners-app.staging.heirslifeassurance.com/assets/hil-logo.png\",\r\n            \"createdAt\": \"2023-07-17T18:30:28.398Z\",\r\n            \"updatedAt\": \"2023-07-31T15:14:04.417Z\",\r\n            \"active\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/provider/getProviders/{{id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"provider",
+								"getProviders",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE A PROVIDER",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"providerCode\": \"PP03\",\r\n            \"name\": \"Heirs Insurance\",\r\n            \"logo\": \"https://partners-app.staging.heirslifeassurance.com/assets/hil-logo.png\",\r\n            \"createdAt\": \"2023-07-17T18:30:28.398Z\",\r\n            \"updatedAt\": \"2023-07-31T15:14:04.417Z\",\r\n            \"active\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/provider/getProviders/{{id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"provider",
+								"getProviders",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
